@@ -11,7 +11,7 @@ def create_car(current_user_token):
     model = request.json['model']
     year = request.json['year']
     color = request.json['color']
-    user_token = current_user_token
+    user_token = current_user_token.token
 
     print(f'BIG TESTER: {current_user_token.token}')
 
