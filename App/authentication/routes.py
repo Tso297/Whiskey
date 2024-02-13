@@ -38,7 +38,7 @@ def signin():
             logged_user = User.query.filter(User.email == email).first()
             if logged_user and check_password_hash(logged_user.password, password):
                 login_user(logged_user)
-                flash('You were successful in your initiation. Congratulations, and welcome to the Jedi Knights', ' auth-success')
+                flash('You were successful in your login', ' auth-success')
                 return redirect(url_for('site.profile'))
             else:
                 flash('You have failed in your attempt to access this content.', 'auth-failed')

@@ -66,7 +66,7 @@ class Contact(db.Model):
         self.user_token = user_token
 
     def __repr__(self):
-        return f'The following contact has been added to the phone book: {self.name}'
+        return f'The following contact has been added to the dealership: {self.name}'
     
     def set_id(self):
         return (secrets.token_urlsafe())
