@@ -47,33 +47,33 @@ class User(db.Model, UserMixin):
         return self.pw_hash
     
     def __repr__(self):
-        return f'User {self.email} has been added to the database'
+        return f'User {self.model} has been added to the database'
     
 class Car_Dealership(db.Model):
     id = db.Column(db.String, primary_key=True)
-    name = db.Column(db.String(150), nullable = False)
-    email = db.Column(db.String(200))
-    phone_number = db.Column(db.String(20))
-    address = db.Column(db.String(200))
+    make = db.Column(db.String(150), nullable = False)
+    model = db.Column(db.String(200))
+    year = db.Column(db.String(20))
+    color = db.Column(db.String(200))
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
     
-    def __init__(self, name, email, phone_number, address, user_token, id=''):
+    def __init__(self, make, model, year, color, user_token, id=''):
         self.id = self.set_id()
-        self.name = name
-        self.email = email
-        self.phone_number = phone_number
-        self.address = address
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
         self.user_token = user_token
 
     def __repr__(self):
-        return f'The following car has been added to the dealership: {self.name}'
+        return f'The following car has been added to the dealership: {self.make}'
     
     def set_id(self):
         return (secrets.token_urlsafe())
     
 class CarSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'name', 'email', 'phone_number', 'address']
+        fields = ['id', 'make', 'model', 'year', 'color']
 
 car_schema = CarSchema()
 cars_schema = CarSchema(many=True)
