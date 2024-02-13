@@ -43,7 +43,6 @@ def get_single_contact(current_user_token, id):
     response = contact_schema.dump(contact)
     return jsonify(response)
 
-# Update endpoint
 @api.route('/contacts/<id>', methods = ['POST', 'PUT'])
 @token_required
 def update_contact(current_user_token, id):
@@ -58,7 +57,6 @@ def update_contact(current_user_token, id):
     response = contact_schema.dump(contact)
     return jsonify(response)
 
-# Delete endpoint
 @api.route('/contacts/<id>', methods = ['DELETE'])
 @token_required
 def delete_contact(current_user_token, id):
