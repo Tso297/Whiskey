@@ -49,7 +49,7 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f'User {self.email} has been added to the database'
     
-class Contact(db.Model):
+class Car_Dealership(db.Model):
     id = db.Column(db.String, primary_key=True)
     name = db.Column(db.String(150), nullable = False)
     email = db.Column(db.String(200))
@@ -66,14 +66,14 @@ class Contact(db.Model):
         self.user_token = user_token
 
     def __repr__(self):
-        return f'The following contact has been added to the dealership: {self.name}'
+        return f'The following car has been added to the dealership: {self.name}'
     
     def set_id(self):
         return (secrets.token_urlsafe())
     
-class ContactSchema(ma.Schema):
+class CarSchema(ma.Schema):
     class Meta:
         fields = ['id', 'name', 'email', 'phone_number', 'address']
 
-contact_schema = ContactSchema()
-contacts_schema = ContactSchema(many=True)
+car_schema = CarSchema()
+cars_schema = CarSchema(many=True)
