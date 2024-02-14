@@ -47,33 +47,33 @@ class User(db.Model, UserMixin):
         return self.pw_hash
     
     def __repr__(self):
-        return f'User {self.model} has been added to the database'
+        return f'User {self.Model} has been added to the database'
     
-class Car_Dealership(db.Model):
+class Whiskey_Collection(db.Model):
     id = db.Column(db.String, primary_key=True)
-    make = db.Column(db.String(150), nullable = False)
-    model = db.Column(db.String(200))
-    year = db.Column(db.String(20))
-    color = db.Column(db.String(200))
+    whiskey = db.Column(db.String(150), nullable = False)
+    origin = db.Column(db.String(200))
+    proof = db.Column(db.String(20))
+    distillery = db.Column(db.String(200))
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
     
-    def __init__(self, make, model, year, color, user_token, id=''):
+    def __init__(self, whiskey, origin, proof, distillery, user_token, id=''):
         self.id = self.set_id()
-        self.make = make
-        self.model = model
-        self.year = year
-        self.color = color
+        self.whiskey = whiskey
+        self.origin = origin
+        self.proof = proof
+        self.distillery = distillery
         self.user_token = user_token
 
     def __repr__(self):
-        return f'The following car has been added to the dealership: {self.make}'
+        return f'The following whiskey has been added to the dealership: {self.whiskey}'
     
     def set_id(self):
         return (secrets.token_urlsafe())
     
-class CarSchema(ma.Schema):
+class WhiskeySchema(ma.Schema):
     class Meta:
-        fields = ['id', 'make', 'model', 'year', 'color']
+        fields = ['id', 'whiskey', 'origin', 'proof', 'distillery']
 
-car_schema = CarSchema()
-cars_schema = CarSchema(many=True)
+whiskey_schema = WhiskeySchema()
+whiskeys_schema = WhiskeySchema(many=True)
